@@ -5,6 +5,11 @@ This is a typescript companion project for a game project built in Construct 2. 
 
 ## Current systems
 
-### Dialogue system
+### [Dialogue system](src/systems/dialogueSystem/README.md)
 
 A dialogue state machine, used to manage NPC interactions created in [talkit](https://github.com/ajboni/Talkit). It makes certain assumptions on how basic Nodes are used, and has a specified set of trigger-nodes. Still a work-in-progress.
+
+
+### [Potion system](src/systems/potionHelper/README.md)
+
+Very simple helper to offload logic workload from Construct 2
