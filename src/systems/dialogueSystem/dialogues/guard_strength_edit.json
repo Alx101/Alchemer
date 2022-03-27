@@ -1,0 +1,684 @@
+{
+    "cells": [
+        {
+            "type": "dialogue.Node",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "interact",
+            "position": {
+                "x": 1104,
+                "y": 448
+            },
+            "angle": 0,
+            "id": "1220ec4e-0a90-4194-8b89-9d937fafdb38",
+            "z": 0,
+            "actor": "guard",
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "dialogue.Node",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "give_potion",
+            "position": {
+                "x": 1120,
+                "y": 656
+            },
+            "angle": 0,
+            "id": "7070277a-1001-4507-b8b8-29f6e0bfcc96",
+            "z": 1,
+            "actor": "guard",
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "dialogue.Text",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "actor": "guard",
+            "textarea": "Start writing",
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "Greetin's on ye. I'm in a lil' pickle here. They says you be peddlin' potions n' whatnot. ",
+            "position": {
+                "x": 1472,
+                "y": 416
+            },
+            "angle": 0,
+            "id": "ce5f03e4-3769-4a17-bf42-896d952f5fe2",
+            "z": 2,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "dialogue.Branch",
+            "size": {
+                "width": 200,
+                "height": 125
+            },
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output0",
+                "output1"
+            ],
+            "values": [
+                "potion_of_strength"
+            ],
+            "name": "potion_name",
+            "position": {
+                "x": 1504,
+                "y": 656
+            },
+            "angle": 0,
+            "id": "222309eb-144d-4025-94f8-2aea4c2a50e0",
+            "z": 3,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output0"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output0",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.25,
+                    "ref-dx": 0
+                },
+                ".outPorts>.port1>text": {
+                    "text": "output1"
+                },
+                ".outPorts>.port1>circle": {
+                    "port": {
+                        "id": "output1",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port1": {
+                    "ref": "rect",
+                    "ref-y": 0.75,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "a511b1ec-d1c9-46fb-8821-84c7b14c59a9",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "1220ec4e-0a90-4194-8b89-9d937fafdb38",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "ce5f03e4-3769-4a17-bf42-896d952f5fe2",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 4,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "177755a3-6d7d-4965-893a-4ec0ee168268",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "7070277a-1001-4507-b8b8-29f6e0bfcc96",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "222309eb-144d-4025-94f8-2aea4c2a50e0",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 5,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "dialogue.Text",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "actor": "guard",
+            "textarea": "Start writing",
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "\"Oh... I feel... Strong! Oh boy the lads are gonna be sorry now! Thanks Mr! Here, payment good and proper! Like I said!",
+            "position": {
+                "x": 1824,
+                "y": 736
+            },
+            "angle": 0,
+            "id": "94688892-27c5-4188-b84a-18907fcc101a",
+            "z": 6,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "fb3b9b34-bd46-4062-87a2-ef8b4f7e30ea",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "222309eb-144d-4025-94f8-2aea4c2a50e0",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(2) circle:nth-child(1)     ",
+                "port": "output1"
+            },
+            "target": {
+                "id": "94688892-27c5-4188-b84a-18907fcc101a",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 8,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "dialogue.Text",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "actor": "guard",
+            "textarea": "Start writing",
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "You call this a potion? The lads were right, ye be nothin' but scum! Piss off!",
+            "position": {
+                "x": 1824,
+                "y": 576
+            },
+            "angle": 0,
+            "id": "c3fdb217-ee0d-491b-aa5a-60b63f33887e",
+            "z": 8,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "a6d074fc-598f-46bb-bf9b-665cfa0fbe30",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "222309eb-144d-4025-94f8-2aea4c2a50e0",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output0"
+            },
+            "target": {
+                "id": "c3fdb217-ee0d-491b-aa5a-60b63f33887e",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 9,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "dialogue.Set",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "size": {
+                "width": 200,
+                "height": 100
+            },
+            "value": "20",
+            "name": "change_gold",
+            "position": {
+                "x": 2160,
+                "y": 768
+            },
+            "angle": 0,
+            "id": "c24390d0-5da1-4d16-91bd-db9037f3e3ae",
+            "z": 10,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "e5a7c53c-f261-4611-81cf-9f6190f5d263",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "94688892-27c5-4188-b84a-18907fcc101a",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "c24390d0-5da1-4d16-91bd-db9037f3e3ae",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 11,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "dialogue.Node",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "leave",
+            "position": {
+                "x": 2464,
+                "y": 624
+            },
+            "angle": 0,
+            "id": "ec55f1fd-6765-4b97-9623-72939852db9b",
+            "z": 12,
+            "actor": "guard",
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "b994d84d-3fb5-41bb-b75f-ae13224b3ca1",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "c3fdb217-ee0d-491b-aa5a-60b63f33887e",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "ec55f1fd-6765-4b97-9623-72939852db9b",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 13,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "56409518-ab7c-4939-88a4-f8cfc4f4abd2",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "c24390d0-5da1-4d16-91bd-db9037f3e3ae",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "ec55f1fd-6765-4b97-9623-72939852db9b",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 14,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        },
+        {
+            "type": "dialogue.Text",
+            "inPorts": [
+                "input"
+            ],
+            "outPorts": [
+                "output"
+            ],
+            "actor": "",
+            "textarea": "Start writing",
+            "size": {
+                "width": 250,
+                "height": 135
+            },
+            "name": "I need me somethin' that'll make the lads think twice 'bout slappin' me about, see? I-I'm willin to pay good and proper for it!",
+            "position": {
+                "x": 1824,
+                "y": 416
+            },
+            "angle": 0,
+            "id": "38a06681-b3de-4c47-b385-5680766bc1f0",
+            "z": 15,
+            "attrs": {
+                ".inPorts>.port0>text": {
+                    "text": "input"
+                },
+                ".inPorts>.port0>circle": {
+                    "port": {
+                        "id": "input",
+                        "type": "in"
+                    }
+                },
+                ".inPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5
+                },
+                ".outPorts>.port0>text": {
+                    "text": "output"
+                },
+                ".outPorts>.port0>circle": {
+                    "port": {
+                        "id": "output",
+                        "type": "out"
+                    }
+                },
+                ".outPorts>.port0": {
+                    "ref": "rect",
+                    "ref-y": 0.5,
+                    "ref-dx": 0
+                }
+            }
+        },
+        {
+            "type": "link",
+            "id": "753db327-0d9f-4121-b3fb-d2af06a7e5c0",
+            "smooth": true,
+            "embeds": "",
+            "source": {
+                "id": "ce5f03e4-3769-4a17-bf42-896d952f5fe2",
+                "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "output"
+            },
+            "target": {
+                "id": "38a06681-b3de-4c47-b385-5680766bc1f0",
+                "selector": "g:nth-child(1) g:nth-child(3) g:nth-child(1) circle:nth-child(1)     ",
+                "port": "input"
+            },
+            "z": 16,
+            "attrs": {
+                ".marker-target": {
+                    "d": "M 10 0 L 0 5 L 10 10 z"
+                },
+                ".link-tools .tool-remove circle, .marker-vertex": {
+                    "r": 8
+                }
+            }
+        }
+    ]
+}

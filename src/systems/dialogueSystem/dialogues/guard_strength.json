@@ -1,0 +1,67 @@
+[
+    {
+        "type": "Node",
+        "id": "1220ec4e-0a90-4194-8b89-9d937fafdb38",
+        "actor": "guard",
+        "name": "interact",
+        "next": "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
+    },
+    {
+        "type": "Node",
+        "id": "7070277a-1001-4507-b8b8-29f6e0bfcc96",
+        "actor": "guard",
+        "name": "give_potion",
+        "next": "222309eb-144d-4025-94f8-2aea4c2a50e0"
+    },
+    {
+        "type": "Text",
+        "id": "ce5f03e4-3769-4a17-bf42-896d952f5fe2",
+        "actor": "guard",
+        "name": "Greetin's on ye. I'm in a lil' pickle here. They says you be peddlin' potions n' whatnot. ",
+        "next": "38a06681-b3de-4c47-b385-5680766bc1f0"
+    },
+    {
+        "type": "Branch",
+        "id": "222309eb-144d-4025-94f8-2aea4c2a50e0",
+        "variable": "potion_name",
+        "branches": {
+            "potionofstrength": "94688892-27c5-4188-b84a-18907fcc101a",
+            "_default": "c3fdb217-ee0d-491b-aa5a-60b63f33887e"
+        }
+    },
+    {
+        "type": "Text",
+        "id": "94688892-27c5-4188-b84a-18907fcc101a",
+        "actor": "guard",
+        "name": "\"Oh... I feel... Strong! Oh boy the lads are gonna be sorry now! Thanks Mr! Here, payment good and proper! Like I said!",
+        "next": "c24390d0-5da1-4d16-91bd-db9037f3e3ae"
+    },
+    {
+        "type": "Text",
+        "id": "c3fdb217-ee0d-491b-aa5a-60b63f33887e",
+        "actor": "guard",
+        "name": "You call this a potion? The lads were right, ye be nothin' but scum! Piss off!",
+        "next": "ec55f1fd-6765-4b97-9623-72939852db9b"
+    },
+    {
+        "type": "Set",
+        "id": "c24390d0-5da1-4d16-91bd-db9037f3e3ae",
+        "variable": "change_gold",
+        "value": "20",
+        "next": "ec55f1fd-6765-4b97-9623-72939852db9b"
+    },
+    {
+        "type": "Node",
+        "id": "ec55f1fd-6765-4b97-9623-72939852db9b",
+        "actor": "guard",
+        "name": "leave",
+        "next": null
+    },
+    {
+        "type": "Text",
+        "id": "38a06681-b3de-4c47-b385-5680766bc1f0",
+        "actor": "guard",
+        "name": "I need me somethin' that'll make the lads think twice 'bout slappin' me about, see? I-I'm willin to pay good and proper for it!",
+        "next": null
+    }
+]

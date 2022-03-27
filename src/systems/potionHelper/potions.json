@@ -1,0 +1,50 @@
+{
+    "health": {
+        "positive": {
+            "immediate": "healthpotion",
+            "gradual": "",
+            "static": ""
+        },
+        "negative": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        }
+    },
+    "stamina": {
+        "positive": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        },
+        "negative": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        }
+    },
+    "strength": {
+        "positive": {
+            "immediate": "cleansingpotion",
+            "gradual": "potionofstrength",
+            "static": ""
+        },
+        "negative": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        }
+    },
+    "resistance": {
+        "positive": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        },
+        "negative": {
+            "immediate": "",
+            "gradual": "",
+            "static": ""
+        }
+    }
+}
