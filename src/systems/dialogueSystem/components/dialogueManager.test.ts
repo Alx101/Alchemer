@@ -116,125 +116,148 @@ test("Sets debug mode", () => {
     expect(mgr.debug).toBe(true);
 });
 
-test("Character can be initialized", () => {
-    const mgr = new DialogueManager();
-    expect(mgr.InitCharacter("char", "1")).toBe(true);
-    expect(mgr.character_interactions.has("1")).toBe(true);
-    const character = mgr.character_interactions.get("1");
-    expect(character.current_node).toBeNull;
-    expect(character.nodes.size).toBe(2);
+describe("InitCharacter", () => {
+    test("Character can be initialized", () => {
+        const mgr = new DialogueManager();
+        expect(mgr.InitCharacter("char", "1")).toBe(true);
+        expect(mgr.character_interactions.has("1")).toBe(true);
+        const character = mgr.character_interactions.get("1");
+        expect(character.current_node).toBeNull;
+        expect(character.nodes.size).toBe(2);
+    });
+
+    test("Unknown character name", () => {
+        const mgr = new DialogueManager();
+        expect(mgr.InitCharacter("dontexist", "1")).toBe(false);
+    });
 });
 
-test("Character with unknown name", () => {
-    const mgr = new DialogueManager();
-    expect(mgr.InteractWithCharacter("dontexist", "1")).toBe(false);
+describe("InteractWithCharacter", () => {
+    test("Initialized character", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("char", "1");
+        expect(mgr.InteractWithCharacter("1", "interact")).toBe("talk");
+    });
+
+    test("Character with unknown name", () => {
+        const mgr = new DialogueManager();
+        expect(mgr.InteractWithCharacter("dontexist", "1")).toBe(false);
+    });
+
+    test("Uninitialized character", () => {
+        const mgr = new DialogueManager();
+        expect(mgr.InteractWithCharacter("123", "interact")).toBe(false);
+    });
 });
 
-test("StepCharacterDialogue without initializing character", () => {
-    const mgr = new DialogueManager();
-    expect(() => mgr.StepCharacterDialogue("123")).toThrowError();
-});
+describe("StepCharacterDialogue", () => {
+    test("Without initializing character", () => {
+        const mgr = new DialogueManager();
+        expect(() => mgr.StepCharacterDialogue("123")).toThrowError();
+    });
 
-test("InteractWithCharacter without initializing character", () => {
-    const mgr = new DialogueManager();
-    expect(mgr.InteractWithCharacter("123", "interact")).toBe(false);
-});
+    test("Unfindable entrypoint", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("char", "1");
+        expect(mgr.StepCharacterDialogue("1", "otheraction")).toBe(false);
+    });
 
-test("StepCharacterDialogue basic text", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("char", "1");
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
+    test("Basic text", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("char", "1");
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
 
-    const interaction = mgr.character_interactions.get("1");
-    expect(interaction.current_node.id).toBe(
-        "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
-    );
-    expect(interaction.current_node.type).toBe("Text");
+        const interaction = mgr.character_interactions.get("1");
+        expect(interaction.current_node.id).toBe(
+            "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
+        );
+        expect(interaction.current_node.type).toBe("Text");
 
-    // Interaction should be re-played if no next node is set
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
-    expect(interaction.current_node.id).toBe(
-        "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
-    );
-});
+        // Interaction should be re-played if no next node is set
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
+        expect(interaction.current_node.id).toBe(
+            "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
+        );
+    });
 
-test("StepCharacterDialogue setting value", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("setsvalue", "1");
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe(
-        "variable_set:change_gold"
-    );
-    const interaction = mgr.character_interactions.get("1");
-    expect(interaction.current_node.id).toBe(
-        "c24390d0-5da1-4d16-91bd-db9037f3e3ae"
-    );
+    test("Setting value", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("setsvalue", "1");
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe(
+            "variable_set:change_gold"
+        );
+        const interaction = mgr.character_interactions.get("1");
+        expect(interaction.current_node.id).toBe(
+            "c24390d0-5da1-4d16-91bd-db9037f3e3ae"
+        );
 
-    // Step dialogue again to confirm we've caught the variable_set message
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
-    expect(interaction.current_node.id).toBe(
-        "ec55f1fd-6765-4b97-9623-72939852db9b"
-    );
-    expect(interaction.current_node.type).toBe("Text");
-    expect(interaction.active_variables.size).toBe(1);
-    expect(interaction.active_variables.get("change_gold")).toBe("20");
-});
+        // Step dialogue again to confirm we've caught the variable_set message
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe("talk");
+        expect(interaction.current_node.id).toBe(
+            "ec55f1fd-6765-4b97-9623-72939852db9b"
+        );
+        expect(interaction.current_node.type).toBe("Text");
+        expect(interaction.active_variables.size).toBe(1);
+        expect(interaction.active_variables.get("change_gold")).toBe("20");
+    });
 
-test("StepCharacterDialogue branching with no value", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("branches", "1");
-    expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe(
-        "variable_required:branch_variable"
-    );
+    test("Branching with no value", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("branches", "1");
+        expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe(
+            "variable_required:branch_variable"
+        );
 
-    // Stays on branch until value is set
-    const interaction = mgr.character_interactions.get("1");
-    expect(interaction.current_node.id).toBe(
-        "c24390d0-5da1-4d16-91bd-db9037f3e3ae"
-    );
-    expect(interaction.current_node.type).toBe("Branch");
-});
+        // Stays on branch until value is set
+        const interaction = mgr.character_interactions.get("1");
+        expect(interaction.current_node.id).toBe(
+            "c24390d0-5da1-4d16-91bd-db9037f3e3ae"
+        );
+        expect(interaction.current_node.type).toBe("Branch");
+    });
 
-test("StepCharacterDialogue branching with default (incorrect) value", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("branches", "1");
-    const interaction = mgr.character_interactions.get("1");
-    interaction.active_variables.set("branch_variable", "incorrect");
-    expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe("talk");
+    test("Branching with default (incorrect) value", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("branches", "1");
+        const interaction = mgr.character_interactions.get("1");
+        interaction.active_variables.set("branch_variable", "incorrect");
+        expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe("talk");
 
-    // Default choice selected here
-    expect(interaction.current_node.id).toBe(
-        "c3fdb217-ee0d-491b-aa5a-60b63f33887e"
-    );
-    expect(interaction.current_node.type).toBe("Text");
-    expect(interaction.current_node.name).toBe("Default choice hit");
-});
+        // Default choice selected here
+        expect(interaction.current_node.id).toBe(
+            "c3fdb217-ee0d-491b-aa5a-60b63f33887e"
+        );
+        expect(interaction.current_node.type).toBe("Text");
+        expect(interaction.current_node.name).toBe("Default choice hit");
+    });
 
-test("StepCharacterDialogue branching based on set value", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("branches", "1");
-    const interaction = mgr.character_interactions.get("1");
-    interaction.active_variables.set("branch_variable", "right_choice");
-    expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe("talk");
+    test("Branching based on set value", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("branches", "1");
+        const interaction = mgr.character_interactions.get("1");
+        interaction.active_variables.set("branch_variable", "right_choice");
+        expect(mgr.StepCharacterDialogue("1", "dobranch")).toBe("talk");
 
-    expect(interaction.current_node.id).toBe(
-        "ec55f1fd-6765-4b97-9623-72939852db9b"
-    );
-    expect(interaction.current_node.type).toBe("Text");
-    expect(interaction.current_node.name).toBe("Right choice hit");
-});
+        expect(interaction.current_node.id).toBe(
+            "ec55f1fd-6765-4b97-9623-72939852db9b"
+        );
+        expect(interaction.current_node.type).toBe("Text");
+        expect(interaction.current_node.name).toBe("Right choice hit");
+    });
 
-test("StepCharacterDialogue with unknown node type", () => {
-    const mgr = new DialogueManager();
-    mgr.InitCharacter("broken", "1");
-    const interaction = mgr.character_interactions.get("1");
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe(false);
+    test("With unknown node type", () => {
+        const mgr = new DialogueManager();
+        mgr.InitCharacter("broken", "1");
+        const interaction = mgr.character_interactions.get("1");
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe(false);
 
-    expect(interaction.current_node.id).toBe(
-        "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
-    );
-    expect(interaction.current_node.type).toBe("Unknown");
-    expect(mgr.StepCharacterDialogue("1", "interact")).toBe(false);
-    expect(interaction.current_node.id).toBe(
-        "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
-    );
+        expect(interaction.current_node.id).toBe(
+            "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
+        );
+        expect(interaction.current_node.type).toBe("Unknown");
+        expect(mgr.StepCharacterDialogue("1", "interact")).toBe(false);
+        expect(interaction.current_node.id).toBe(
+            "ce5f03e4-3769-4a17-bf42-896d952f5fe2"
+        );
+    });
 });

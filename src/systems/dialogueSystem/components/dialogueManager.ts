@@ -55,7 +55,7 @@ export default class DialogueManager {
                 .get(character_id)
                 .load_tree(
                     characters[character_name][
-                    randomInteger(0, characters[character_name].length - 1)
+                        randomInteger(0, characters[character_name].length - 1)
                     ]
                 );
         }
@@ -120,17 +120,5 @@ export default class DialogueManager {
             }
             return this.StepCharacterDialogue(character_id, entrypoint);
         }
-    }
-
-    SetCharacterVariable(
-        character_id: string,
-        variable_name: string,
-        variable_value: string
-    ): void {
-        this.print(
-            `setting character ${character_id} varaible ${variable_name} to ${variable_value}`
-        );
-        const interaction = this.character_interactions.get(character_id);
-        interaction.active_variables.set(variable_name, variable_value);
     }
 }

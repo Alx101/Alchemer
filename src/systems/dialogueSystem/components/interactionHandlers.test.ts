@@ -126,7 +126,7 @@ test("Set handler", () => {
         id: "12",
         name: "leave",
         variable: "somevar",
-        value: "50"
+        value: "50",
     };
     const manager = new DialogueManagerMock();
     expect(SetHandler(interaction, manager, "interact")).toBe(
